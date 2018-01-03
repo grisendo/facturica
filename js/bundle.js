@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 25);
+/******/ 	return __webpack_require__(__webpack_require__.s = 26);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -260,8 +260,8 @@ process.umask = function() { return 0; };
 "use strict";
 
 
-var bind = __webpack_require__(20);
-var isBuffer = __webpack_require__(43);
+var bind = __webpack_require__(21);
+var isBuffer = __webpack_require__(44);
 
 /*global toString:true*/
 
@@ -568,6 +568,21 @@ module.exports = {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+if (process.env.NODE_ENV === 'production') {
+  module.exports = __webpack_require__(27);
+} else {
+  module.exports = __webpack_require__(28);
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 
 
 /**
@@ -604,21 +619,6 @@ emptyFunction.thatReturnsArgument = function (arg) {
 };
 
 module.exports = emptyFunction;
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(26);
-} else {
-  module.exports = __webpack_require__(27);
-}
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 4 */
@@ -670,7 +670,7 @@ module.exports = emptyFunction;
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(1);
-var normalizeHeaderName = __webpack_require__(45);
+var normalizeHeaderName = __webpack_require__(46);
 
 var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'
@@ -686,10 +686,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(21);
+    adapter = __webpack_require__(22);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(21);
+    adapter = __webpack_require__(22);
   }
   return adapter;
 }
@@ -1164,7 +1164,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
  * @typechecks
  */
 
-var emptyFunction = __webpack_require__(2);
+var emptyFunction = __webpack_require__(3);
 
 /**
  * Upstream version of event listener. Does not take into account specific
@@ -1358,7 +1358,7 @@ module.exports = shallowEqual;
  * 
  */
 
-var isTextNode = __webpack_require__(32);
+var isTextNode = __webpack_require__(33);
 
 /*eslint-disable no-bitwise */
 
@@ -1514,7 +1514,7 @@ module.exports = invariant;
 
 
 
-var emptyFunction = __webpack_require__(2);
+var emptyFunction = __webpack_require__(3);
 
 /**
  * Similar to invariant but only logs a warning if the condition is not met.
@@ -1572,6 +1572,12 @@ module.exports = warning;
 /* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__(43);
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 
@@ -1587,19 +1593,19 @@ module.exports = function bind(fn, thisArg) {
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(1);
-var settle = __webpack_require__(46);
-var buildURL = __webpack_require__(48);
-var parseHeaders = __webpack_require__(49);
-var isURLSameOrigin = __webpack_require__(50);
-var createError = __webpack_require__(22);
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(51);
+var settle = __webpack_require__(47);
+var buildURL = __webpack_require__(49);
+var parseHeaders = __webpack_require__(50);
+var isURLSameOrigin = __webpack_require__(51);
+var createError = __webpack_require__(23);
+var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(52);
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -1696,7 +1702,7 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(52);
+      var cookies = __webpack_require__(53);
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -1775,13 +1781,13 @@ module.exports = function xhrAdapter(config) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var enhanceError = __webpack_require__(47);
+var enhanceError = __webpack_require__(48);
 
 /**
  * Create an Error with the specified message, config, error code, request and response.
@@ -1800,7 +1806,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1812,7 +1818,7 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1838,295 +1844,30 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(3);
+var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(30);
+var _reactDom = __webpack_require__(31);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _axios = __webpack_require__(41);
+var _invoices = __webpack_require__(42);
 
-var _axios2 = _interopRequireDefault(_axios);
+var _invoices2 = _interopRequireDefault(_invoices);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var InvoiceLine = function (_React$Component) {
-  _inherits(InvoiceLine, _React$Component);
-
-  function InvoiceLine() {
-    _classCallCheck(this, InvoiceLine);
-
-    return _possibleConstructorReturn(this, (InvoiceLine.__proto__ || Object.getPrototypeOf(InvoiceLine)).apply(this, arguments));
-  }
-
-  _createClass(InvoiceLine, [{
-    key: 'getPDF',
-    value: function getPDF(e) {
-      e.preventDefault();
-      _axios2.default.get(window.apiBaseUrl + 'invoice/' + this.props.invoice.id, window.ajaxConfig).then(function (res) {
-        window.generatePDF(res.data);
-      }.bind(this));
-      return false;
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var classes = 'tabla_estado';
-      if (this.props.invoice.amount_details.total_left > 0) {
-        classes += ' pendiente';
-      }
-      return _react2.default.createElement(
-        'tr',
-        { className: 'table_row' },
-        _react2.default.createElement('td', { className: classes }),
-        _react2.default.createElement(
-          'td',
-          { className: 'tabla_fecha first' },
-          this.props.invoice.date.split('-').reverse().join('/')
-        ),
-        _react2.default.createElement(
-          'td',
-          { className: 'tabla_numero internal' },
-          this.props.invoice.invoice_number,
-          '/',
-          this.props.invoice.invoice_serie
-        ),
-        _react2.default.createElement(
-          'td',
-          { className: 'tabla_razon_social internal' },
-          this.props.invoice.description
-        ),
-        _react2.default.createElement(
-          'td',
-          { className: 'tabla_ingreso text_right internal' },
-          this.props.invoice.amount_details.total_base.toFixed(2),
-          '\u20AC'
-        ),
-        _react2.default.createElement(
-          'td',
-          { className: 'tabla_total_factura text_right last' },
-          _react2.default.createElement(
-            'strong',
-            null,
-            this.props.invoice.amount_details.total_amount.toFixed(2),
-            '\u20AC'
-          )
-        ),
-        _react2.default.createElement(
-          'td',
-          { className: 'linea_acciones' },
-          _react2.default.createElement(
-            'a',
-            { href: '#', onClick: this.getPDF.bind(this) },
-            _react2.default.createElement('i', { className: 'icon-download', title: 'Save' })
-          )
-        )
-      );
-    }
-  }]);
-
-  return InvoiceLine;
-}(_react2.default.Component);
-
-var Invoices = function (_React$Component2) {
-  _inherits(Invoices, _React$Component2);
-
-  function Invoices(props) {
-    _classCallCheck(this, Invoices);
-
-    var _this2 = _possibleConstructorReturn(this, (Invoices.__proto__ || Object.getPrototypeOf(Invoices)).call(this, props));
-
-    _this2.state = {
-      invoices: [],
-      page: 0,
-      startDate: '',
-      endDate: '',
-      totalFrom: '',
-      totalTo: '',
-      query: '',
-      numPages: 9999
-    };
-    return _this2;
-  }
-
-  _createClass(Invoices, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      this.loadMore();
-    }
-  }, {
-    key: 'loadMoreClick',
-    value: function loadMoreClick(e) {
-      e.preventDefault();
-      this.loadMore();
-      return false;
-    }
-  }, {
-    key: 'loadMore',
-    value: function loadMore() {
-      if (!window.apiToken) {
-        return;
-      }
-      this.setState({ page: this.state.page + 1 }, function () {
-        _axios2.default.get(window.apiBaseUrl + 'invoice?page=' + this.state.page + '&sort=date:desc&page_size=10', window.ajaxConfig).then(function (res) {
-          var numPages = Math.ceil(res.headers['x-pagination-totalelements'] / res.headers['x-pagination-pagesize']);
-          var invoices = this.state.invoices.slice(0);
-          var _iteratorNormalCompletion = true;
-          var _didIteratorError = false;
-          var _iteratorError = undefined;
-
-          try {
-            for (var _iterator = res.data[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-              var invoice = _step.value;
-
-              invoices.push(invoice);
-            }
-          } catch (err) {
-            _didIteratorError = true;
-            _iteratorError = err;
-          } finally {
-            try {
-              if (!_iteratorNormalCompletion && _iterator.return) {
-                _iterator.return();
-              }
-            } finally {
-              if (_didIteratorError) {
-                throw _iteratorError;
-              }
-            }
-          }
-
-          this.setState({
-            numPages: numPages,
-            invoices: invoices
-          });
-        }.bind(this));
-      });
-    }
-  }, {
-    key: 'applyFilters',
-    value: function applyFilters(event) {
-      event.preventDefault();
-      console.log(this);
-      this.setState({
-        invoices: [],
-        page: 0,
-        startDate: this.startDate.value,
-        endDate: this.endDate.value,
-        totalFrom: this.totalFrom.value,
-        totalTo: this.totalTo.value,
-        query: this.query.value,
-        numPages: 9999
-      });
-      this.loadMore();
-      return false;
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      if (!window.apiToken) {
-        return _react2.default.createElement('div', null);
-      }
-      var rows = this.state.invoices.map(function (invoice) {
-        return _react2.default.createElement(InvoiceLine, { key: invoice.id, invoice: invoice });
-      });
-      var loadMorebutton = void 0;
-      if (this.state.page < this.state.numPages) {
-        loadMorebutton = _react2.default.createElement(
-          'div',
-          { className: 'vermas_tabla' },
-          _react2.default.createElement(
-            'a',
-            { href: '#', id: 'show_more_emitidos', className: 'mostrarOpciones', onClick: this.loadMoreClick.bind(this) },
-            'Load more...'
-          )
-        );
-      }
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'h2',
-          null,
-          'Invoices'
-        ),
-        _react2.default.createElement('div', { id: 'loading' }),
-        _react2.default.createElement(
-          'div',
-          { id: 'result' },
-          _react2.default.createElement(
-            'table',
-            { className: 'grid tabla_facturas' },
-            _react2.default.createElement(
-              'thead',
-              null,
-              _react2.default.createElement(
-                'tr',
-                null,
-                _react2.default.createElement('th', { className: 'empty tabla_estado' }),
-                _react2.default.createElement(
-                  'th',
-                  { className: 'tabla_fecha first' },
-                  'Date'
-                ),
-                _react2.default.createElement(
-                  'th',
-                  { className: 'tabla_numero internal' },
-                  'Number'
-                ),
-                _react2.default.createElement(
-                  'th',
-                  { className: 'tabla_descripcion internal' },
-                  'Description'
-                ),
-                _react2.default.createElement(
-                  'th',
-                  { className: 'tabla_ingreso internal' },
-                  'Base'
-                ),
-                _react2.default.createElement(
-                  'th',
-                  { className: 'tabla_total_factura last' },
-                  'Total'
-                ),
-                _react2.default.createElement('th', { className: 'empty' })
-              )
-            ),
-            _react2.default.createElement(
-              'tbody',
-              null,
-              rows
-            )
-          ),
-          loadMorebutton
-        )
-      );
-    }
-  }]);
-
-  return Invoices;
-}(_react2.default.Component);
-
-_reactDom2.default.render(_react2.default.createElement(Invoices, null), document.getElementById('root'));
+_reactDom2.default.render(_react2.default.createElement(_invoices2.default, null), document.getElementById('root'));
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2154,7 +1895,7 @@ isValidElement:K,version:"16.2.0",__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_F
 
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2180,7 +1921,7 @@ var emptyObject = __webpack_require__(7);
 var invariant = __webpack_require__(8);
 var warning = __webpack_require__(9);
 var emptyFunction = __webpack_require__(4);
-var checkPropTypes = __webpack_require__(28);
+var checkPropTypes = __webpack_require__(29);
 
 // TODO: this is special because it gets imported during build.
 
@@ -3519,7 +3260,7 @@ module.exports = react;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3535,7 +3276,7 @@ module.exports = react;
 if (process.env.NODE_ENV !== 'production') {
   var invariant = __webpack_require__(8);
   var warning = __webpack_require__(9);
-  var ReactPropTypesSecret = __webpack_require__(29);
+  var ReactPropTypesSecret = __webpack_require__(30);
   var loggedTypeFailures = {};
 }
 
@@ -3586,7 +3327,7 @@ module.exports = checkPropTypes;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3605,7 +3346,7 @@ module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3643,15 +3384,15 @@ if (process.env.NODE_ENV === 'production') {
   // DCE check should happen before ReactDOM bundle executes so that
   // DevTools can report bad minification during injection.
   checkDCE();
-  module.exports = __webpack_require__(31);
+  module.exports = __webpack_require__(32);
 } else {
-  module.exports = __webpack_require__(34);
+  module.exports = __webpack_require__(35);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3667,7 +3408,7 @@ if (process.env.NODE_ENV === 'production') {
 /*
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(3),l=__webpack_require__(10),B=__webpack_require__(11),C=__webpack_require__(2),ba=__webpack_require__(12),da=__webpack_require__(13),ea=__webpack_require__(14),fa=__webpack_require__(15),ia=__webpack_require__(16),D=__webpack_require__(17);
+var aa=__webpack_require__(2),l=__webpack_require__(10),B=__webpack_require__(11),C=__webpack_require__(3),ba=__webpack_require__(12),da=__webpack_require__(13),ea=__webpack_require__(14),fa=__webpack_require__(15),ia=__webpack_require__(16),D=__webpack_require__(17);
 function E(a){for(var b=arguments.length-1,c="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,d=0;d<b;d++)c+="\x26args[]\x3d"+encodeURIComponent(arguments[d+1]);b=Error(c+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}aa?void 0:E("227");
 var oa={children:!0,dangerouslySetInnerHTML:!0,defaultValue:!0,defaultChecked:!0,innerHTML:!0,suppressContentEditableWarning:!0,suppressHydrationWarning:!0,style:!0};function pa(a,b){return(a&b)===b}
 var ta={MUST_USE_PROPERTY:1,HAS_BOOLEAN_VALUE:4,HAS_NUMERIC_VALUE:8,HAS_POSITIVE_NUMERIC_VALUE:24,HAS_OVERLOADED_BOOLEAN_VALUE:32,HAS_STRING_BOOLEAN_VALUE:64,injectDOMPropertyConfig:function(a){var b=ta,c=a.Properties||{},d=a.DOMAttributeNamespaces||{},e=a.DOMAttributeNames||{};a=a.DOMMutationMethods||{};for(var f in c){ua.hasOwnProperty(f)?E("48",f):void 0;var g=f.toLowerCase(),h=c[f];g={attributeName:g,attributeNamespace:null,propertyName:f,mutationMethod:null,mustUseProperty:pa(h,b.MUST_USE_PROPERTY),
@@ -3887,7 +3628,7 @@ Z.injectIntoDevTools({findFiberByHostInstance:pb,bundleType:0,version:"16.2.0",r
 
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3902,7 +3643,7 @@ Z.injectIntoDevTools({findFiberByHostInstance:pb,bundleType:0,version:"16.2.0",r
  * @typechecks
  */
 
-var isNode = __webpack_require__(33);
+var isNode = __webpack_require__(34);
 
 /**
  * @param {*} object The object to check.
@@ -3915,7 +3656,7 @@ function isTextNode(object) {
 module.exports = isTextNode;
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3943,7 +3684,7 @@ function isNode(object) {
 module.exports = isNode;
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3964,21 +3705,21 @@ if (process.env.NODE_ENV !== "production") {
   (function() {
 'use strict';
 
-var React = __webpack_require__(3);
+var React = __webpack_require__(2);
 var invariant = __webpack_require__(18);
 var warning = __webpack_require__(19);
 var ExecutionEnvironment = __webpack_require__(10);
 var _assign = __webpack_require__(11);
-var emptyFunction = __webpack_require__(2);
+var emptyFunction = __webpack_require__(3);
 var EventListener = __webpack_require__(12);
 var getActiveElement = __webpack_require__(13);
 var shallowEqual = __webpack_require__(14);
 var containsNode = __webpack_require__(15);
 var focusNode = __webpack_require__(16);
 var emptyObject = __webpack_require__(17);
-var checkPropTypes = __webpack_require__(35);
-var hyphenateStyleName = __webpack_require__(37);
-var camelizeStyleName = __webpack_require__(39);
+var checkPropTypes = __webpack_require__(36);
+var hyphenateStyleName = __webpack_require__(38);
+var camelizeStyleName = __webpack_require__(40);
 
 /**
  * WARNING: DO NOT manually require this module.
@@ -19345,7 +19086,7 @@ module.exports = reactDom;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19361,7 +19102,7 @@ module.exports = reactDom;
 if (process.env.NODE_ENV !== 'production') {
   var invariant = __webpack_require__(18);
   var warning = __webpack_require__(19);
-  var ReactPropTypesSecret = __webpack_require__(36);
+  var ReactPropTypesSecret = __webpack_require__(37);
   var loggedTypeFailures = {};
 }
 
@@ -19412,7 +19153,7 @@ module.exports = checkPropTypes;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19431,7 +19172,7 @@ module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19446,7 +19187,7 @@ module.exports = ReactPropTypesSecret;
 
 
 
-var hyphenate = __webpack_require__(38);
+var hyphenate = __webpack_require__(39);
 
 var msPattern = /^ms-/;
 
@@ -19473,7 +19214,7 @@ function hyphenateStyleName(string) {
 module.exports = hyphenateStyleName;
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19509,7 +19250,7 @@ function hyphenate(string) {
 module.exports = hyphenate;
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19524,7 +19265,7 @@ module.exports = hyphenate;
 
 
 
-var camelize = __webpack_require__(40);
+var camelize = __webpack_require__(41);
 
 var msPattern = /^-ms-/;
 
@@ -19552,7 +19293,7 @@ function camelizeStyleName(string) {
 module.exports = camelizeStyleName;
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19587,21 +19328,229 @@ function camelize(string) {
 module.exports = camelize;
 
 /***/ }),
-/* 41 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(42);
-
-/***/ }),
 /* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _axios = __webpack_require__(20);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _invoiceLine = __webpack_require__(61);
+
+var _invoiceLine2 = _interopRequireDefault(_invoiceLine);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Invoices = function (_React$Component) {
+    _inherits(Invoices, _React$Component);
+
+    function Invoices(props) {
+        _classCallCheck(this, Invoices);
+
+        var _this = _possibleConstructorReturn(this, (Invoices.__proto__ || Object.getPrototypeOf(Invoices)).call(this, props));
+
+        _this.state = {
+            invoices: [],
+            page: 0,
+            startDate: '',
+            endDate: '',
+            totalFrom: '',
+            totalTo: '',
+            query: '',
+            numPages: 9999
+        };
+        return _this;
+    }
+
+    _createClass(Invoices, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.loadMore();
+        }
+    }, {
+        key: 'loadMoreClick',
+        value: function loadMoreClick(e) {
+            e.preventDefault();
+            this.loadMore();
+            return false;
+        }
+    }, {
+        key: 'loadMore',
+        value: function loadMore() {
+            if (!window.apiToken) {
+                return;
+            }
+            this.setState({ page: this.state.page + 1 }, function () {
+                _axios2.default.get(window.apiBaseUrl + 'invoice?page=' + this.state.page + '&sort=date:desc&page_size=10', window.ajaxConfig).then(function (res) {
+                    var numPages = Math.ceil(res.headers['x-pagination-totalelements'] / res.headers['x-pagination-pagesize']);
+                    var invoices = this.state.invoices.slice(0);
+                    var _iteratorNormalCompletion = true;
+                    var _didIteratorError = false;
+                    var _iteratorError = undefined;
+
+                    try {
+                        for (var _iterator = res.data[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                            var invoice = _step.value;
+
+                            invoices.push(invoice);
+                        }
+                    } catch (err) {
+                        _didIteratorError = true;
+                        _iteratorError = err;
+                    } finally {
+                        try {
+                            if (!_iteratorNormalCompletion && _iterator.return) {
+                                _iterator.return();
+                            }
+                        } finally {
+                            if (_didIteratorError) {
+                                throw _iteratorError;
+                            }
+                        }
+                    }
+
+                    this.setState({
+                        numPages: numPages,
+                        invoices: invoices
+                    });
+                }.bind(this));
+            });
+        }
+    }, {
+        key: 'applyFilters',
+        value: function applyFilters(event) {
+            event.preventDefault();
+            console.log(this);
+            this.setState({
+                invoices: [],
+                page: 0,
+                startDate: this.startDate.value,
+                endDate: this.endDate.value,
+                totalFrom: this.totalFrom.value,
+                totalTo: this.totalTo.value,
+                query: this.query.value,
+                numPages: 9999
+            });
+            this.loadMore();
+            return false;
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            if (!window.apiToken) {
+                return _react2.default.createElement('div', null);
+            }
+            var rows = this.state.invoices.map(function (invoice) {
+                return _react2.default.createElement(_invoiceLine2.default, { key: invoice.id, invoice: invoice });
+            });
+            var loadMorebutton = void 0;
+            if (this.state.page < this.state.numPages) {
+                loadMorebutton = _react2.default.createElement(
+                    'div',
+                    { className: 'vermas_tabla' },
+                    _react2.default.createElement(
+                        'a',
+                        { href: '#', id: 'show_more_emitidos', className: 'mostrarOpciones', onClick: this.loadMoreClick.bind(this) },
+                        'Load more...'
+                    )
+                );
+            }
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'h2',
+                    null,
+                    'Invoices'
+                ),
+                _react2.default.createElement('div', { id: 'loading' }),
+                _react2.default.createElement(
+                    'div',
+                    { id: 'result' },
+                    _react2.default.createElement(
+                        'table',
+                        { className: 'grid tabla_facturas' },
+                        _react2.default.createElement(
+                            'thead',
+                            null,
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement('th', { className: 'empty tabla_estado' }),
+                                _react2.default.createElement(
+                                    'th',
+                                    { className: 'tabla_fecha first' },
+                                    'Date'
+                                ),
+                                _react2.default.createElement(
+                                    'th',
+                                    { className: 'tabla_numero internal' },
+                                    'Number'
+                                ),
+                                _react2.default.createElement(
+                                    'th',
+                                    { className: 'tabla_descripcion internal' },
+                                    'Description'
+                                ),
+                                _react2.default.createElement(
+                                    'th',
+                                    { className: 'tabla_ingreso internal' },
+                                    'Base'
+                                ),
+                                _react2.default.createElement(
+                                    'th',
+                                    { className: 'tabla_total_factura last' },
+                                    'Total'
+                                ),
+                                _react2.default.createElement('th', { className: 'empty' })
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'tbody',
+                            null,
+                            rows
+                        )
+                    ),
+                    loadMorebutton
+                )
+            );
+        }
+    }]);
+
+    return Invoices;
+}(_react2.default.Component);
+
+exports.default = Invoices;
+
+/***/ }),
+/* 43 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 var utils = __webpack_require__(1);
-var bind = __webpack_require__(20);
-var Axios = __webpack_require__(44);
+var bind = __webpack_require__(21);
+var Axios = __webpack_require__(45);
 var defaults = __webpack_require__(5);
 
 /**
@@ -19635,15 +19584,15 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(24);
-axios.CancelToken = __webpack_require__(58);
-axios.isCancel = __webpack_require__(23);
+axios.Cancel = __webpack_require__(25);
+axios.CancelToken = __webpack_require__(59);
+axios.isCancel = __webpack_require__(24);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(59);
+axios.spread = __webpack_require__(60);
 
 module.exports = axios;
 
@@ -19652,7 +19601,7 @@ module.exports.default = axios;
 
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports) {
 
 /*!
@@ -19679,7 +19628,7 @@ function isSlowBuffer (obj) {
 
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19687,8 +19636,8 @@ function isSlowBuffer (obj) {
 
 var defaults = __webpack_require__(5);
 var utils = __webpack_require__(1);
-var InterceptorManager = __webpack_require__(53);
-var dispatchRequest = __webpack_require__(54);
+var InterceptorManager = __webpack_require__(54);
+var dispatchRequest = __webpack_require__(55);
 
 /**
  * Create a new instance of Axios
@@ -19765,7 +19714,7 @@ module.exports = Axios;
 
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19784,13 +19733,13 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var createError = __webpack_require__(22);
+var createError = __webpack_require__(23);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -19817,7 +19766,7 @@ module.exports = function settle(resolve, reject, response) {
 
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19845,7 +19794,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
 
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19920,7 +19869,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19980,7 +19929,7 @@ module.exports = function parseHeaders(headers) {
 
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20055,7 +20004,7 @@ module.exports = (
 
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20098,7 +20047,7 @@ module.exports = btoa;
 
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20158,7 +20107,7 @@ module.exports = (
 
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20217,18 +20166,18 @@ module.exports = InterceptorManager;
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(1);
-var transformData = __webpack_require__(55);
-var isCancel = __webpack_require__(23);
+var transformData = __webpack_require__(56);
+var isCancel = __webpack_require__(24);
 var defaults = __webpack_require__(5);
-var isAbsoluteURL = __webpack_require__(56);
-var combineURLs = __webpack_require__(57);
+var isAbsoluteURL = __webpack_require__(57);
+var combineURLs = __webpack_require__(58);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -20310,7 +20259,7 @@ module.exports = function dispatchRequest(config) {
 
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20337,7 +20286,7 @@ module.exports = function transformData(data, headers, fns) {
 
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20358,7 +20307,7 @@ module.exports = function isAbsoluteURL(url) {
 
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20379,13 +20328,13 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var Cancel = __webpack_require__(24);
+var Cancel = __webpack_require__(25);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -20443,7 +20392,7 @@ module.exports = CancelToken;
 
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20475,6 +20424,115 @@ module.exports = function spread(callback) {
   };
 };
 
+
+/***/ }),
+/* 61 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _axios = __webpack_require__(20);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var InvoiceLine = function (_React$Component) {
+    _inherits(InvoiceLine, _React$Component);
+
+    function InvoiceLine() {
+        _classCallCheck(this, InvoiceLine);
+
+        return _possibleConstructorReturn(this, (InvoiceLine.__proto__ || Object.getPrototypeOf(InvoiceLine)).apply(this, arguments));
+    }
+
+    _createClass(InvoiceLine, [{
+        key: 'getPDF',
+        value: function getPDF(e) {
+            e.preventDefault();
+            _axios2.default.get(window.apiBaseUrl + 'invoice/' + this.props.invoice.id, window.ajaxConfig).then(function (res) {
+                window.generatePDF(res.data);
+            }.bind(this));
+            return false;
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var classes = 'tabla_estado';
+            if (this.props.invoice.amount_details.total_left > 0) {
+                classes += ' pendiente';
+            }
+            return _react2.default.createElement(
+                'tr',
+                { className: 'table_row' },
+                _react2.default.createElement('td', { className: classes }),
+                _react2.default.createElement(
+                    'td',
+                    { className: 'tabla_fecha first' },
+                    this.props.invoice.date.split('-').reverse().join('/')
+                ),
+                _react2.default.createElement(
+                    'td',
+                    { className: 'tabla_numero internal' },
+                    this.props.invoice.invoice_number,
+                    '/',
+                    this.props.invoice.invoice_serie
+                ),
+                _react2.default.createElement(
+                    'td',
+                    { className: 'tabla_razon_social internal' },
+                    this.props.invoice.description
+                ),
+                _react2.default.createElement(
+                    'td',
+                    { className: 'tabla_ingreso text_right internal' },
+                    this.props.invoice.amount_details.total_base.toFixed(2),
+                    '\u20AC'
+                ),
+                _react2.default.createElement(
+                    'td',
+                    { className: 'tabla_total_factura text_right last' },
+                    _react2.default.createElement(
+                        'strong',
+                        null,
+                        this.props.invoice.amount_details.total_amount.toFixed(2),
+                        '\u20AC'
+                    )
+                ),
+                _react2.default.createElement(
+                    'td',
+                    { className: 'linea_acciones' },
+                    _react2.default.createElement(
+                        'a',
+                        { href: '#', onClick: this.getPDF.bind(this) },
+                        _react2.default.createElement('i', { className: 'icon-download', title: 'Save' })
+                    )
+                )
+            );
+        }
+    }]);
+
+    return InvoiceLine;
+}(_react2.default.Component);
+
+exports.default = InvoiceLine;
 
 /***/ })
 /******/ ]);

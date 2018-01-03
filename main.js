@@ -6,6 +6,7 @@ const BrowserWindow = electron.BrowserWindow;
 
 const path = require('path');
 const url = require('url');
+const globby = require('globby');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -22,7 +23,7 @@ function createWindow () {
     slashes: true
   }));
   
-  const menuTemplate = [
+  let menuTemplate = [
     {
       label: 'Application',
       accelerator: 'Alt+A',
@@ -38,12 +39,39 @@ function createWindow () {
           role: 'close'
         }
       ]
+    },
+    {
+      label: 'Templates',
+      accelerator: 'Alt+T',
+      submenu: []
     }
   ];
-  mainWindow.setMenu(electron.Menu.buildFromTemplate(menuTemplate));
+
+  globby(['./templates/*/template.ejs']).then(function(paths) {
+    for (let key in paths) {
+      let theme = paths[key].replace(/^\.\/templates\/(.+)\/template\.ejs$/, "$1").trim();
+      menuTemplate[1].submenu.push({
+          label: theme,
+          checked: false,
+          type: 'checkbox',
+          click: function(item, focusedWindow) {
+            focusedWindow.send('changeTemplate', item.label);
+          }
+      });
+    }
+
+    mainWindow.setMenu(electron.Menu.buildFromTemplate(menuTemplate));
+  });
+
+  electron.ipcMain.on('updateMenu', function(e, template) {
+    for (let loopItem in menuTemplate[1].submenu) {
+      menuTemplate[1].submenu[loopItem].checked = (menuTemplate[1].submenu[loopItem].label === template);
+      mainWindow.setMenu(electron.Menu.buildFromTemplate(menuTemplate));
+    }
+  });
 
   // Open the DevTools.
-  //mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {

@@ -1,10 +1,13 @@
-var path = require('path');
-var webpack = require('webpack');
- 
+const path = require('path');
+const webpack = require('webpack');
+
 module.exports = {
   entry: './js/app.jsx',
   output: {path: __dirname, filename: 'js/bundle.js' },
- 
+
+  resolve: {
+    extensions: [".js", ".jsx", ".json"]
+  },
   module: {
     loaders: [
       {
@@ -18,4 +21,3 @@ module.exports = {
     ]
   },
 };
-

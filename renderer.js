@@ -7,6 +7,9 @@ const axios = require('axios');
 
 window.apiBaseUrl = 'https://api.cuentica.com/';
 window.apiToken = config.get('cuenticaAPIToken');
+window.currentTemplate = config.get('template', 'default');
+config.set('template', window.currentTemplate);
+electron.ipcRenderer.send('updateMenu', window.currentTemplate);
 window.ajaxConfig = {
   headers: {'X-AUTH-TOKEN': window.apiToken}
 };
@@ -56,6 +59,12 @@ electron.ipcRenderer.on('changeAPIKey', function() {
   window.askForAPIToken();
 });
 
+electron.ipcRenderer.on('changeTemplate', function(e, template) {
+  window.currentTemplate = template;
+  config.set('template', template);
+  electron.ipcRenderer.send('updateMenu', template);
+});
+
 if (!window.apiToken) {
   window.askForAPIToken();
 }
@@ -64,7 +73,7 @@ window.generatePDF = function(invoice) {
   const templateData = {
     invoice: invoice,
     path: electron.remote.app.getAppPath(),
-    templatePath: electron.remote.app.getAppPath() + '/templates/default/'
+    templatePath: electron.remote.app.getAppPath() + '/templates/' + window.currentTemplate + '/'
   };
   const pdfConfig = {
 	  format: 'A4',
@@ -89,7 +98,7 @@ window.generatePDF = function(invoice) {
     },
     function(filepath) {
       if (filepath) {
-        ejs.renderFile('./templates/default/template.ejs', templateData, {}, function(err, html) {
+        ejs.renderFile('./templates/' + window.currentTemplate + '/template.ejs', templateData, {}, function(err, html) {
           if (err) {
             dialog.showMessageBox(
               {
